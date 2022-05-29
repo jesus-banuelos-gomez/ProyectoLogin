@@ -28,8 +28,8 @@ class MainActivity : AppCompatActivity() {
         tvRegistrar.setOnClickListener{
             var intentRegister = Intent(this,LoginActivity::class.java)
             startActivity(intentRegister)
-
         }
+
 
     }
 }

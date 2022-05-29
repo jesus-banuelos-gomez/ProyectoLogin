@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/etNameRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -40,7 +40,7 @@
                 tools:srcCompat="@drawable/persona" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/etEmailRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -63,7 +63,7 @@
                 tools:srcCompat="@drawable/candado" />
 
             <EditText
-                android:id="@+id/editTextTextPassword"
+                android:id="@+id/etPassRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
@@ -72,7 +72,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/editTextTextPassword2"
+            android:id="@+id/etPassConfRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -80,7 +80,7 @@
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnpRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button" />
