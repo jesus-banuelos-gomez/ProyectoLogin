@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.blackgreen.proyectologin.modelo.Post
 import com.blackgreen.proyectologin.repositorio.Repository
 
 class LoginActivity : AppCompatActivity() {
@@ -33,7 +35,12 @@ class LoginActivity : AppCompatActivity() {
 
         val repository = Repository()
         val viewModelFactory = myViewModel(repository)
-        viewModel.pushPost("Erick","algo@algoc.com","hola","hola")
+        //viewModel = ViewModelProvider(this,viewModelFactory).get(myViewModel::class.java)
+        val myPost = Post(etNameRegister.text.toString(),
+                      etEmailRegister.text.toString(),
+                      etPassRegister.text.toString(),
+                      etPassConfRegister.text.toString())//Post("Erick","algo@algoc.com","hola","hola")
+        viewModel.pushPost(myPost)
         viewModel.myResponse.observe(this, Observer { response ->
             if (response.isSuccessful){
                 Log.d("Main",response.body().toString())

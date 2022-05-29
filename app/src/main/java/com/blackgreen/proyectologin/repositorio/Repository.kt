@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class Repository {
 
-        suspend fun pushPost(post: String): Response<Post> {
+        suspend fun pushPost(post: Post): Response<Post> {
         return RetrofitInstance.api.pushPost(post)
         }
 

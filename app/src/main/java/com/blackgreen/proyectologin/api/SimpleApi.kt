@@ -16,7 +16,7 @@ interface SimpleApi {
 
     @POST("register")
     suspend fun pushPost(
-        @Body post: String
+        @Body post: Post
     ): Response<Post>
 
 }
