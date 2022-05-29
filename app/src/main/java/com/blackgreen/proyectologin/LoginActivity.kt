@@ -32,24 +32,28 @@ class LoginActivity : AppCompatActivity() {
         etPassRegister = findViewById(R.id.etPassRegister)
         etPassConfRegister = findViewById(R.id.etPassConfRegister)
 
+        btnpRegister.setOnClickListener{
 
-        val repository = Repository()
-        val viewModelFactory = myViewModel(repository)
-        //viewModel = ViewModelProvider(this,viewModelFactory).get(myViewModel::class.java)
-        val myPost = Post(etNameRegister.text.toString(),
-                      etEmailRegister.text.toString(),
-                      etPassRegister.text.toString(),
-                      etPassConfRegister.text.toString())//Post("Erick","algo@algoc.com","hola","hola")
-        viewModel.pushPost(myPost)
-        viewModel.myResponse.observe(this, Observer { response ->
-            if (response.isSuccessful){
-                Log.d("Main",response.body().toString())
-                Log.d("Main",response.code().toString())
-                Log.d("Main",response.message())
-            }else{
-                Toast.makeText(this, response.code(), Toast.LENGTH_SHORT).show()
-            }
-        })
+            val repository = Repository()
+            val viewModelFactory = myViewModel(repository)
+            //viewModel = ViewModelProvider(this,viewModelFactory).get(myViewModel::class.java)
+            val myPost = Post(etNameRegister.text.toString(),
+                etEmailRegister.text.toString(),
+                etPassRegister.text.toString(),
+                etPassConfRegister.text.toString())//Post("Erick","algo@algoc.com","hola","hola")
+            viewModel.pushPost(myPost)
+            viewModel.myResponse.observe(this, Observer { response ->
+                if (response.isSuccessful){
+                    Log.d("Main",response.body().toString())
+                    Log.d("Main",response.code().toString())
+                    Log.d("Main",response.message())
+                }else{
+                    Toast.makeText(this, response.code(), Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+
+
 
 
 
