@@ -14,8 +14,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var etCorreo: EditText
     lateinit var etContrasena: EditText
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -26,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         etContrasena = findViewById(R.id.etContrasena)
 
         tvRegistrar.setOnClickListener{
-            var intentRegister = Intent(this,LoginActivity::class.java)
+            val intentRegister = Intent(this,LoginActivity::class.java)
             startActivity(intentRegister)
         }
 

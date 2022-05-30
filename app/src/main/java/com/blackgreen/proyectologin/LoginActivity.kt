@@ -6,11 +6,9 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.blackgreen.proyectologin.modelo.Post
-import com.blackgreen.proyectologin.repositorio.Repository
+
 
 class LoginActivity : AppCompatActivity() {
     lateinit var btnpRegister:Button
@@ -19,7 +17,7 @@ class LoginActivity : AppCompatActivity() {
     lateinit var etPassRegister:EditText
     lateinit var etPassConfRegister:EditText
 
-    private lateinit var viewModel: myViewModel
+    lateinit var viewModel: MyViewModel
     //private val myAdapter by lazy { MyAdap }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,31 +30,28 @@ class LoginActivity : AppCompatActivity() {
         etPassRegister = findViewById(R.id.etPassRegister)
         etPassConfRegister = findViewById(R.id.etPassConfRegister)
 
-        btnpRegister.setOnClickListener{
-
-            val repository = Repository()
-            val viewModelFactory = myViewModel(repository)
-            //viewModel = ViewModelProvider(this,viewModelFactory).get(myViewModel::class.java)
-            val myPost = Post(etNameRegister.text.toString(),
-                etEmailRegister.text.toString(),
-                etPassRegister.text.toString(),
-                etPassConfRegister.text.toString())//Post("Erick","algo@algoc.com","hola","hola")
-            viewModel.pushPost(myPost)
-            viewModel.myResponse.observe(this, Observer { response ->
-                if (response.isSuccessful){
-                    Log.d("Main",response.body().toString())
-                    Log.d("Main",response.code().toString())
-                    Log.d("Main",response.message())
-                }else{
-                    Toast.makeText(this, response.code(), Toast.LENGTH_SHORT).show()
-                }
-            })
+        initViewModel()
+        btnpRegister.setOnClickListener {
+            createUser()
         }
 
+    }
 
+    private fun createUser() {
+        val user = User("",etNameRegister.text.toString(),etEmailRegister.text.toString(), "Active", "Male")
+        viewModel.createNewUser(user)
+    }
 
+    private fun initViewModel() {
+        viewModel = ViewModelProvider(this).get(MyViewModel::class.java)
+        viewModel.getCreateNewUserObserver().observe(this, Observer <UserResponse>{
 
-
+            if (it == null){
+                Toast.makeText(this@LoginActivity, "Failed to create User", Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this@LoginActivity, "Successfully created User", Toast.LENGTH_LONG).show()
+            }
+        })
     }
 
 
